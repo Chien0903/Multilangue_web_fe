@@ -10,13 +10,13 @@ const images = [
   "https://www.toray.com/global/images/index_kv_02.webp",
 ];
 
-const LoginPage = () => {
+const SignupPage = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000); 
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
@@ -47,14 +47,12 @@ const LoginPage = () => {
         </div>
       </div>
 
-      {/* Login Card */}
+      {/* Signup Card */}
       <div className="bg-white rounded-2xl shadow-lg p-8 w-96 text-center mt-20 relative z-10">
-        <h1 className="text-2xl font-semibold mb-4">Sign in</h1>
+        <h1 className="text-2xl font-semibold mb-4">Sign up</h1>
         <form>
           <div className="mb-4 text-left">
-            <label className="block text-gray-700 text-sm font-semibold mb-2">
-              Username or email address
-            </label>
+            <label className="block text-gray-700 text-sm font-semibold mb-2">Username or email address</label>
             <input
               type="text"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -62,34 +60,44 @@ const LoginPage = () => {
             />
           </div>
           <div className="mb-4 text-left">
-            <label className="block text-gray-700 text-sm font-semibold mb-2">
-              Password
-            </label>
+            <label className="block text-gray-700 text-sm font-semibold mb-2">Full Name</label>
+            <input
+              type="text"
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              placeholder="Enter full name"
+            />
+          </div>
+          <div className="mb-4 text-left">
+            <label className="block text-gray-700 text-sm font-semibold mb-2">Password</label>
             <input
               type="password"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter password"
             />
+            <p className="text-xs text-gray-500 mt-1">Password should be at least 15 characters OR at least 8 characters including a number and a lowercase letter.</p>
           </div>
-          <div className="text-right mb-4">
-            <a href="#" className="text-blue-600 text-sm hover:underline">
-              Forgot password?
-            </a>
+          <div className="mb-4 text-left">
+            <label className="block text-gray-700 text-sm font-semibold mb-2">Confirm Password</label>
+            <input
+              type="password"
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              placeholder="Confirm password"
+            />
           </div>
           <button
             type="submit"
             className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
           >
-            Sign in
+            Sign up
           </button>
         </form>
         <p className="mt-4 text-gray-600 text-sm">
-          New to <strong>'TORAY'</strong> Multi-Language Translator? <br />
-          <Link to="/signup" className="text-blue-600 hover:underline">Create an account</Link>
+          Already have an account? 
+          <Link to="/login" className="text-blue-600 hover:underline">Sign in</Link>
         </p>
       </div>
     </div>
   );
 };
 
-export default LoginPage;
+export default SignupPage;
