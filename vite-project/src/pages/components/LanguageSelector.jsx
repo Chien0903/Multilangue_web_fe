@@ -23,7 +23,7 @@ const LanguageSelector = ({ onSelectOrigin, onSelectTarget }) => {
   };
 
   return (
-    <div className="border-b-2 border-blue-700 flex items-center justify-between p-2 w-full bg-gray-100 relative mt-14">
+    <div className="border-b-2 border-blue-700 flex items-center justify-between p-2 w-full bg-gray-100 relative mt-5">
       <button className="bg-gray-300 px-3 py-2 rounded flex items-center text-sm" onClick={() => setShowLanguages(!showLanguages)}>
         {selectedOriginLanguage} <span className="ml-1">▼</span>
       </button>
