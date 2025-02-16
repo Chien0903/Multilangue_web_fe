@@ -49,8 +49,8 @@ const LoginPage = () => {
         <div className="flex items-center">
           <img
             src="https://www.toray.com/global/shared/images/toray_logo.svg"
-            alt="Logo"
-            className="w-20 h-20 mr-3"
+            alt="Toray Logo"
+            className="h-10"
           />
         </div>
       </div>

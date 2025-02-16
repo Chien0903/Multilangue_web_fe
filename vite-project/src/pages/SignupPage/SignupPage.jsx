@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"; // Import icon mắt
 
 const images = [
   "https://www.toray.com/global/images/index_kv_06.webp",
@@ -12,6 +13,8 @@ const images = [
 
 const SignupPage = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -41,8 +44,8 @@ const SignupPage = () => {
         <div className="flex items-center">
           <img
             src="https://www.toray.com/global/shared/images/toray_logo.svg"
-            alt="Logo"
-            className="w-20 h-20 mr-3"
+            alt="Toray Logo"
+            className="h-10"
           />
         </div>
       </div>
@@ -67,23 +70,48 @@ const SignupPage = () => {
               placeholder="Enter full name"
             />
           </div>
-          <div className="mb-4 text-left">
+
+          {/* Password Field */}
+          <div className="mb-4 text-left relative">
             <label className="block text-gray-700 text-sm font-semibold mb-2">Password</label>
-            <input
-              type="password"
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Enter password"
-            />
-            <p className="text-xs text-gray-500 mt-1">Password should be at least 15 characters OR at least 8 characters including a number and a lowercase letter.</p>
+            <div className="relative">
+              <input
+                type={passwordVisible ? "text" : "password"}
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 pr-10"
+                placeholder="Enter password"
+              />
+              <button
+                type="button"
+                className="absolute inset-y-0 right-3 flex items-center"
+                onClick={() => setPasswordVisible(!passwordVisible)}
+              >
+                {passwordVisible ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
+              </button>
+            </div>
+            <p className="text-xs text-gray-500 mt-1">
+              Password should be at least 15 characters OR at least 8 characters including a number and a lowercase letter.
+            </p>
           </div>
-          <div className="mb-4 text-left">
+
+          {/* Confirm Password Field */}
+          <div className="mb-4 text-left relative">
             <label className="block text-gray-700 text-sm font-semibold mb-2">Confirm Password</label>
-            <input
-              type="password"
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Confirm password"
-            />
+            <div className="relative">
+              <input
+                type={confirmPasswordVisible ? "text" : "password"}
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 pr-10"
+                placeholder="Confirm password"
+              />
+              <button
+                type="button"
+                className="absolute inset-y-0 right-3 flex items-center"
+                onClick={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
+              >
+                {confirmPasswordVisible ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
+              </button>
+            </div>
           </div>
+
           <button
             type="submit"
             className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
