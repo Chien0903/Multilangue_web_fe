@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { IoPersonCircleOutline } from "react-icons/io5";
+import { FaUser, FaSignOutAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
@@ -22,13 +23,22 @@ const Header = () => {
           <IoPersonCircleOutline size={40} />
         </button>
         {showUserMenu && (
-          <div className="absolute right-0 top-full mt-1 bg-white border rounded shadow-md w-40 z-10">
-            <ul>
-              <li className="p-2 hover:bg-gray-200 cursor-pointer" onClick={() => navigate('/myprofile')}>
-                Setting
+          <div className="absolute right-0 top-full mt-2 bg-white border rounded-md shadow-md w-44 z-10 overflow-hidden">
+            <ul className="flex flex-col">
+              <li
+                className="p-3 text-sm font-medium text-gray-700 hover:bg-blue-100 cursor-pointer flex items-center space-x-2 transition"
+                onClick={() => navigate('/myprofile')}
+              >
+                <FaUser className="text-gray-600" />
+                <span>My Account</span>
               </li>
-              <li className="p-2 hover:bg-gray-200 cursor-pointer" onClick={() => navigate('/login')}>
-                Log out
+              <hr className="border-gray-300" />
+              <li
+                className="p-3 text-sm font-medium text-gray-700 hover:bg-blue-100 cursor-pointer flex items-center space-x-2 transition"
+                onClick={() => navigate('/login')}
+              >
+                <FaSignOutAlt className="text-gray-600" />
+                <span>Log out</span>
               </li>
             </ul>
           </div>

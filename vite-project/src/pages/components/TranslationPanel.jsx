@@ -20,7 +20,7 @@ const TranslationPanel = () => {
   };
 
   return (
-    <div className="w-full max-w-3xl bg-gray-100 p-6 rounded-lg shadow-md flex flex-col items-center">
+    <>
       <LanguageSelector
         selectedOriginLanguage={selectedOriginLanguage}
         availableTargetLanguages={availableTargetLanguages}
@@ -29,7 +29,7 @@ const TranslationPanel = () => {
         onTargetSelect={handleTargetLanguageSelect}
       />
       <UploadBox />
-    </div>
+    </>
   );
 };
 

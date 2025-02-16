@@ -23,7 +23,8 @@ const LanguageSelector = ({ onSelectOrigin, onSelectTarget }) => {
   };
 
   return (
-    <div className="border-b-2 border-blue-700 flex items-center justify-between p-2 w-full bg-gray-100 relative mt-5">
+    <div className="border-b-2 border-blue-700 flex items-center justify-between p-2 w-full bg-gray-100 relative mt-4">
+      {/* Chọn ngôn ngữ gốc */}
       <button className="bg-gray-300 px-3 py-2 rounded flex items-center text-sm" onClick={() => setShowLanguages(!showLanguages)}>
         {selectedOriginLanguage} <span className="ml-1">▼</span>
       </button>
@@ -38,6 +39,8 @@ const LanguageSelector = ({ onSelectOrigin, onSelectTarget }) => {
           </ul>
         </div>
       )}
+
+      {/* Chọn ngôn ngữ đích */}
       <button className="bg-gray-300 px-3 py-2 rounded flex items-center text-sm" onClick={() => setShowTargetDropdown(!showTargetDropdown)}>
         Target Language <span className="ml-2">▼</span>
       </button>
@@ -45,8 +48,17 @@ const LanguageSelector = ({ onSelectOrigin, onSelectTarget }) => {
         <div className="absolute right-0 top-full mt-1 bg-white border rounded shadow-md w-40 max-h-40 overflow-auto z-10">
           <ul>
             {availableTargetLanguages.map((lang) => (
-              <li key={lang} className="p-2 hover:bg-gray-200 cursor-pointer flex items-center">
-                <input type="checkbox" checked={selectedTargetLanguages.includes(lang)} onChange={() => handleTargetLanguageSelect(lang)} className="mr-2" />
+              <li 
+                key={lang} 
+                className="p-2 hover:bg-gray-200 cursor-pointer flex items-center"
+                onClick={() => handleTargetLanguageSelect(lang)}
+              >
+                <input 
+                  type="checkbox" 
+                  checked={selectedTargetLanguages.includes(lang)} 
+                  readOnly 
+                  className="mr-2 pointer-events-none" 
+                />
                 {lang}
               </li>
             ))}
