@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // ✅ Import useNavigate
 
 const images = [
   "https://www.toray.com/global/images/index_kv_06.webp",
@@ -12,14 +12,22 @@ const images = [
 
 const LoginPage = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const navigate = useNavigate(); // ✅ Sử dụng useNavigate để điều hướng
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000); 
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
+
+  // ✅ Hàm xử lý đăng nhập
+  const handleLogin = (e) => {
+    e.preventDefault(); // Ngăn chặn reload trang
+    // Giả lập đăng nhập thành công, sau này có thể thêm API call tại đây
+    navigate("/home"); // ✅ Chuyển hướng đến trang HomePage
+  };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-blue-100 relative">
@@ -50,7 +58,7 @@ const LoginPage = () => {
       {/* Login Card */}
       <div className="bg-white rounded-2xl shadow-lg p-8 w-96 text-center mt-20 relative z-10">
         <h1 className="text-2xl font-semibold mb-4">Sign in</h1>
-        <form>
+        <form onSubmit={handleLogin}>
           <div className="mb-4 text-left">
             <label className="block text-gray-700 text-sm font-semibold mb-2">
               Username or email address
@@ -59,6 +67,7 @@ const LoginPage = () => {
               type="text"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter username or email"
+              required
             />
           </div>
           <div className="mb-4 text-left">
@@ -69,6 +78,7 @@ const LoginPage = () => {
               type="password"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter password"
+              required
             />
           </div>
           <div className="text-right mb-4">
@@ -85,7 +95,9 @@ const LoginPage = () => {
         </form>
         <p className="mt-4 text-gray-600 text-sm">
           New to <strong>'TORAY'</strong> Multi-Language Translator? <br />
-          <Link to="/signup" className="text-blue-600 hover:underline">Create an account</Link>
+          <Link to="/signup" className="text-blue-600 hover:underline">
+            Create an account
+          </Link>
         </p>
       </div>
     </div>
